@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>ｊQueryの練習</title>
+</head>
+<body>
+    <p>ｊQueryの練習</p>
+    <a href="http://google.com" data-sitename="google">google</a>
+    <input type="text" value="hello">
+
+    <ul>
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ul>
+    <div id="box" style="width:100px; height:100px; background:red;"></div>
+
+    <input type="text" id="name">
+    <select id="members" name="members">
+        <option>taguchi</option>
+        <option>matsuoka</option>
+        <option>obayashi</option>
+    </serect>
+
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script><!-- 必ずｊQueryを読み込んでからコードを書く-->
+    <script>
+      //$(document).ready(function(){
+        $(function(){
+          console.log($('a')).attr('href'));
+          //セレクタ:処理対象となるDOM要素を指定する記法
+          //メソッド　:処理　※（つなげてかける）＝メソッドチェーン
+          //$('p').css('color' , 'red');
+          //↑セレクタ　　　↑メソッド
+          $('a').attr('href','http://google.co.jp'));
+          //サイトのデータ取得・表示
+                console.log($('a').data('sitename'))
+
+          //タグの中身を操作するメソッド
+              //text
+              //html
+              //val
+              //remove,empty
+
+              //p要素の中身を書き換える
+              $('p').text('just changed');
+              //htmlそのものの書き換え
+              $('p').html('<a href="">click me!</a>');
+              //valueの中身を書き換え
+              $('input').val('hello ,again!');
+              //ｐ要素の中身を空に
+              $('p').empty();
+              //ｐ要素をなくす
+              $('p').remove();
+
+          //要素を追加する
+              //before, after -> insertBefore insertAfter(要素に対して)
+              //pretend, append -> prependTo, appendTo（子要素の先頭に/末尾に追加する）
+              var li = $('<li>').text('just added');
+              $('ul > li:eq(1)').before(li); 
+              //= li.insertBefore($('ul > li:eq(1)'));
+              $('ul').prepend('just added');
+              //li.prependTo($('ul'); 
+
+          //イベントメソッド
+              //click
+              $('#box').click(function(){
+                alert("hi!");
+              });
+              $('#box').mouseover(function(){
+                $(this).css('background', 'green');
+              });
+               $('#box').mouseout(function(){
+                $(this).css('background', 'red');
+              });
+               $('#name').fucus(function(){
+                $('this').css('background','red');
+               });
+               $('#member').change(function(){
+                 alert('change!');
+               });
+      });
+  </script>
+</body>
+</html>
